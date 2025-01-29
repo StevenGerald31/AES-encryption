@@ -1,0 +1,5 @@
+venv/
+__pycache__/
+results/dekripsi/*
+results/enkripsi/metadata/*
+results/enkripsi/txt/*
