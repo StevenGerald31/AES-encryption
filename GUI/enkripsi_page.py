@@ -278,21 +278,45 @@ class EnkripsiPage(QWidget):
 
         msg.exec()
 
+    # def download_file(self, file_path):
+    #     if os.path.exists(file_path):
+    #         # Open save file dialog to let the user choose where to save the file
+            
+    #         save_path, _ = QFileDialog.getSaveFileName(
+    #             self, "Simpan File", file_path, "All Files (*)"
+    #         )
+            
+    #         if save_path:
+    #             # Copy the file to the chosen location
+    #             try:
+    #                 shutil.copy(file_path, save_path)
+    #                 print(f"File telah disalin ke: {save_path}")
+    #             except Exception as e:
+    #                 print(f"Error saat menyalin file: {e}")
+
     def download_file(self, file_path):
         if os.path.exists(file_path):
+            # Tambahkan ekstensi .txt jika belum ada
+            if not file_path.endswith(".txt"):
+                file_path += ".txt"
+
             # Open save file dialog to let the user choose where to save the file
-            
             save_path, _ = QFileDialog.getSaveFileName(
-                self, "Simpan File", file_path, "All Files (*)"
+                self, "Simpan File", file_path, "Text Files (*.txt);;All Files (*)"
             )
-            
+
             if save_path:
+                # Pastikan file yang disimpan tetap memiliki ekstensi .txt
+                if not save_path.endswith(".txt"):
+                    save_path += ".txt"
+
                 # Copy the file to the chosen location
                 try:
                     shutil.copy(file_path, save_path)
                     print(f"File telah disalin ke: {save_path}")
                 except Exception as e:
                     print(f"Error saat menyalin file: {e}")
+
 
 
     def encrypt_file(self, input_file, key, iv):
