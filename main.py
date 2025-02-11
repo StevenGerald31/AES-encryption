@@ -6,6 +6,7 @@ from GUI.about_page import AboutPage
 from GUI.fitur_page import FiturPage
 from GUI.enkripsi_page import EnkripsiPage
 from GUI.dekripsi_page import DekripsiPage
+from GUI.login_page import loginPage
 
 
 class SecureHealthApp(QMainWindow):
@@ -24,6 +25,7 @@ class SecureHealthApp(QMainWindow):
         self.setCentralWidget(self.central_widget)
 
         # Initialize pages
+        self.login_page = loginPage(self.central_widget)
         self.main_page = MainPage(self.central_widget)
         self.about_page = AboutPage(self.central_widget)
         self.fitur_page = FiturPage(self.central_widget)  # Halaman fitur
@@ -31,14 +33,15 @@ class SecureHealthApp(QMainWindow):
         self.dekripsi_page = DekripsiPage(self.central_widget)
 
         # Add pages to stacked widget
-        self.central_widget.addWidget(self.main_page)  # Index 0
-        self.central_widget.addWidget(self.about_page)  # Index 1
-        self.central_widget.addWidget(self.fitur_page)  # Index 2
+        self.central_widget.addWidget(self.login_page)  # Index 0
+        self.central_widget.addWidget(self.main_page)  # Index 1
+        self.central_widget.addWidget(self.about_page)  # Index 2
+        self.central_widget.addWidget(self.fitur_page)  # Index 3
         self.central_widget.addWidget(self.enkripsi_page)
         self.central_widget.addWidget(self.dekripsi_page)
 
         # Show main page by default
-        self.central_widget.setCurrentWidget(self.main_page)
+        self.central_widget.setCurrentWidget(self.login_page)
 
 
 if __name__ == "__main__":

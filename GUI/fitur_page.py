@@ -145,16 +145,16 @@ class FiturPage(QWidget):
 
 
     def show_enkripsi_page(self):
-        self.stacked_widget.setCurrentIndex(3)
+        self.stacked_widget.setCurrentIndex(4)
     
     def show_dekripsi_page(self):
-        self.stacked_widget.setCurrentIndex(4)
+        self.stacked_widget.setCurrentIndex(5)
 
     def deskripsi_action(self):
         print("Tombol Deskripsi diklik!")
 
     def show_main_page(self):
-        self.stacked_widget.setCurrentIndex(0)
+        self.stacked_widget.setCurrentIndex(1)
 
     def show_about_page(self):
-        self.stacked_widget.setCurrentIndex(1)
+        self.stacked_widget.setCurrentIndex(2)

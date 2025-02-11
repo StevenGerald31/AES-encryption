@@ -307,26 +307,46 @@ class DekripsiPage(QWidget):
 
         return output_file
     
+    
+
     def download_decrypted_file(self):
         if hasattr(self, "decrypted_file") and os.path.isfile(self.decrypted_file):
-            save_path, _ = QFileDialog.getSaveFileName(self, "Simpan File", os.path.basename(self.decrypted_file))
+            # Ambil ekstensi asli dari nama file decrypted
+            _, original_ext = os.path.splitext(self.decrypted_file)
+
+            # Siapkan nama default dengan ekstensi asli
+            default_filename = os.path.basename(self.decrypted_file)
+
+            # Buka dialog penyimpanan dengan ekstensi default
+            save_path, _ = QFileDialog.getSaveFileName(
+                self,
+                "Simpan File",
+                default_filename,
+                f"{original_ext.upper()} Files (*{original_ext});;All Files (*)"
+            )
+
             if save_path:
-                shutil.copy(self.decrypted_file, save_path)
-                # Pesan sukses dengan teks hitam
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Icon.Information)
-                msg.setWindowTitle("Download Selesai")
-                msg.setText("File berhasil disimpan.")
-                msg.setStyleSheet("""
-                    QMessageBox {
-                        color: black;  /* Warna teks */
-                    }
-                """)
-                msg.setStandardButtons(QMessageBox.StandardButton.Ok)
-                msg.exec()
+                # Pastikan ekstensi sesuai jika belum ada
+                if original_ext and not save_path.endswith(original_ext):
+                    save_path += original_ext
+
+                try:
+                    shutil.copy(self.decrypted_file, save_path)
+                    # Pesan sukses
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Icon.Information)
+                    msg.setWindowTitle("Download Selesai")
+                    msg.setText("File berhasil disimpan.")
+                    msg.setStyleSheet("QMessageBox { color: black; }")
+                    msg.setStandardButtons(QMessageBox.StandardButton.Ok)
+                    msg.exec()
+                except Exception as e:
+                    print(f"Error saat menyalin file: {e}")
+
+
 
     def show_main_page(self):
-        self.stacked_widget.setCurrentIndex(0)
+        self.stacked_widget.setCurrentIndex(1)
 
     def show_about_page(self):
-        self.stacked_widget.setCurrentIndex(1)
+        self.stacked_widget.setCurrentIndex(2)

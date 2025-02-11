@@ -148,10 +148,10 @@ class AboutPage(QWidget):
 
 
     def show_main_page(self):
-        self.stacked_widget.setCurrentIndex(0)  # Kembali ke halaman utama
+        self.stacked_widget.setCurrentIndex(1)  # Kembali ke halaman utama
     
     def show_enkripsi_page(self):
-        self.stacked_widget.setCurrentIndex(3)  # Pindah ke halaman enkripsi
+        self.stacked_widget.setCurrentIndex(4)  # Pindah ke halaman enkripsi
 
     def show_dekripsi_page(self):
-        self.stacked_widget.setCurrentIndex(4)  # Pindah ke halaman dekripsi
+        self.stacked_widget.setCurrentIndex(5)  # Pindah ke halaman dekripsi
